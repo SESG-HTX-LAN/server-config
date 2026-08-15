@@ -2,7 +2,7 @@
   description = "NixOS Minecraft server configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 
     nix-minecraft = {
       url = "github:Infinidoge/nix-minecraft";
@@ -27,6 +27,7 @@
             nixpkgs.overlays = [ nix-minecraft.overlays.default ];
           }
         ];
+	specialArgs = { inherit inputs; };
       };
     };
 }
