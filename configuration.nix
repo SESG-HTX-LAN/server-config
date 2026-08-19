@@ -6,6 +6,7 @@ in
 {
   imports = [
     ./hardware-configuration.nix
+    ./minecraft.nix
     inputs.nix-minecraft.nixosModules.minecraft-servers
   ];
 
@@ -68,10 +69,14 @@ in
   nixpkgs.config.allowUnfree = true;
 
   # ---- Admin account (see admins.nix) -----------------------------------------
-  users.users.minecraft = {
+  users.users.admin = {
     isNormalUser = true;
-    description = "noname";
-    extraGroups = [ "networkmanager" "wheel" "minecraft-server" ];
+    extraGroups = [ 
+      "networkmanager" 
+      "wheel" 
+      "services.minecraft-server"
+      "minecraft"
+    ];
     packages = with pkgs; [];
     openssh.authorizedKeys.keys = keys;
   };
@@ -81,12 +86,16 @@ in
   # Packages installed in the system profile.
   environment.systemPackages = with pkgs; [
     neovim
+    vim
     wget
     curl
     screen
     git
     jdk21_headless
     kitty
+    ripgrep
+    lazygit
+    bottom
   ];
 
   # ---- SSH -------------------------------------------------------------------
