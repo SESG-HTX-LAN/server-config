@@ -1,14 +1,17 @@
 { inputs, config, pkgs, lib, ... }:
 
 let
+  htxServerModHash = "c7bfc2397e9d5151a6e7c42a8362d7fb329fcfe7";
+  bedwarsConfHash  = "f6aa2f19d2afdcfdf146ab7e7fbb8d65a21af2ff";
+
   modpack = pkgs.fetchPackwizModpack {
-    url = "https://raw.githubusercontent.com/SESG-HTX-LAN/server-modpack/c7bfc2397e9d5151a6e7c42a8362d7fb329fcfe7/pack.toml";
+    url = "https://raw.githubusercontent.com/SESG-HTX-LAN/server-modpack/${htxServerModHash}/pack.toml";
     packHash = "sha256-LKRBDHmSQ/cvRM1BS9VQKw6yseGLijzgpCYmQdQsFVs=";
     #dontVerifyIndexHash = true;
   };
 
   bedwars = pkgs.fetchPackwizModpack {
-    url = "https://raw.githubusercontent.com/SESG-HTX-LAN/bedwars-server/f6aa2f19d2afdcfdf146ab7e7fbb8d65a21af2ff/pack.toml";
+    url = "https://raw.githubusercontent.com/SESG-HTX-LAN/bedwars-server/${bedwarsConfHash}/pack.toml";
     packHash = "sha256-xw72z8BgbTXcaKffJyIVYR52bKgf16wIM9oFon8+COY=";
     #dontVerifyIndexHash = true;
   };
